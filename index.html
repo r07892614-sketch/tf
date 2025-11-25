@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TradeFinder.in - India's No. 1 Trade Finder Tool</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1724;
+      --accentA:#06b6d4; /* teal */
+      --accentB:#7c3aed; /* violet */
+      --muted:#9ca3af;
+      --white:#ffffff;
+      --btn-text:#08101a;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;}
+    body{
+      min-height:100vh;
+      background:linear-gradient(180deg,#061427 0,#071126 60%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      color:var(--white);
+    }
+
+    .wrap{
+      width:100%;
+      max-width:460px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      border-radius:14px;
+      padding:22px;
+      box-shadow: 0 12px 40px rgba(2,6,23,0.7);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+
+    .tag{
+      font-size:12px;
+      color:var(--accentB);
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(124,58,237,0.08);
+      border:1px solid rgba(124,58,237,0.12);
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+    }
+
+    /* Logo circle */
+    .logo-outer{
+      width:140px;height:140px;border-radius:50%;
+      padding:5px;
+      background:conic-gradient(from 0deg,var(--accentA),var(--accentB),var(--accentA));
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 8px 30px rgba(7,20,40,0.6);
+      margin-top:6px;
+    }
+    .logo-inner{width:100%;height:100%;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+    .logo-inner img{width:86%;height:86%;object-fit:cover;border-radius:50%}
+    .logo-inner:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 25%, rgba(255,255,255,0.04), transparent 45%);pointer-events:none}
+
+    .title{font-weight:800;font-size:1.05rem;text-align:center}
+    .subs{font-size:0.9rem;color:var(--muted);text-align:center}
+
+    .info{
+      width:100%;
+      padding:10px 12px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.02);
+      color:var(--muted);
+      font-size:0.95rem;
+      line-height:1.5;
+      text-align:left;
+    }
+    .info b{color:var(--accentA);}
+
+    .divider{width:64%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);margin:8px 0}
+
+    .timer-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.12em}
+    .timer{
+      margin-top:6px;
+      padding:8px 18px;border-radius:999px;background:rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.03);font-weight:700;font-variant-numeric:tabular-nums;
+      color:var(--white);
+    }
+
+    /* Big highlighted button */
+    .cta-wrap{width:100%;display:flex;justify-content:center;margin-top:12px}
+    .cta{
+      width:92%;
+      max-width:380px;
+      padding:16px 18px;
+      border-radius:12px;
+      font-weight:800;
+      font-size:1.02rem;
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+      border:none;cursor:pointer;
+      color:var(--btn-text);
+      background:linear-gradient(90deg,var(--accentA),var(--accentB));
+      box-shadow: 0 14px 40px rgba(6,182,212,0.14), 0 6px 22px rgba(124,58,237,0.10);
+      position:relative;overflow:hidden;
+      animation:pulse 2.6s ease-in-out infinite;
+    }
+    .cta::before{
+      content:"";position:absolute;top:-40%;left:-20%;width:36%;height:180%;
+      background:linear-gradient(120deg,rgba(255,255,255,0.14),rgba(255,255,255,0.95),rgba(255,255,255,0.14));
+      transform:translateX(-150%) rotate(18deg);
+      animation:shine 2.2s ease-in-out infinite;pointer-events:none;
+    }
+    @keyframes shine{
+      0%{transform:translateX(-150%) rotate(18deg)}55%{transform:translateX(150%) rotate(18deg)}100%{transform:translateX(150%) rotate(18deg)}
+    }
+    @keyframes pulse{0%{transform:translateY(0);opacity:0.9}50%{transform:translateY(-3px);opacity:1}100%{transform:translateY(0);opacity:0.9}}
+    .cta.disabled{background:linear-gradient(90deg,#9ca3af,#b6bfc9);cursor:not-allowed;animation:none;color:#111}
+
+    .note{font-size:0.86rem;color:var(--muted);text-align:center;margin-top:8px}
+
+    @media (max-width:420px){
+      .logo-outer{width:120px;height:120px}
+      .cta{padding:14px;font-size:0.98rem;border-radius:999px}
+      .card{padding:16px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="region" aria-label="TradeFinder.in join card">
+      <div class="tag">Official Channel</div>
+
+      <div class="logo-outer" aria-hidden="true">
+        <div class="logo-inner">
+          <!-- Replace with your logo image -->
+          <img src="logo.jpg" alt="TradeFinder.in logo" />
+        </div>
+      </div>
+
+      <div class="title">TradeFinder.in - India's No. 1 Trade Finder Tool</div>
+      <div class="subs">645 subscribers</div>
+
+      <div class="info" aria-live="polite">
+        ❇️ <b>Official Channel</b><br>
+        ❇️ <b>Intraday Banknifty</b><br>
+        ❇️ <b>All Stocks</b><br>
+        ❇️ <b>Nifty-50</b>
+      </div>
+
+      <div class="divider" role="presentation"></div>
+
+      <div class="timer-label">Free join link active for</div>
+      <div id="timer" class="timer">00:60</div>
+
+      <div class="cta-wrap">
+        <button id="joinBtn" class="cta" type="button" aria-label="Free join to TradeFinder.in channel">
+          ▶︎ FREE JOIN
+        </button>
+      </div>
+
+      <div class="note">Tap <strong>FREE JOIN</strong> to open Telegram and join instantly.</div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      let seconds = 60;
+      const timerEl = document.getElementById('timer');
+      const btn = document.getElementById('joinBtn');
+
+      // TODO: replace with your real Telegram channel link
+      const telegramUrl = "https://t.me/+Y6D6G7WhpFJkZmQ1";
+
+      function tick(){
+        const s = seconds < 10 ? '0' + seconds : seconds;
+        timerEl.textContent = '00:' + s;
+        if(seconds <= 0){
+          clearInterval(interval);
+          timerEl.textContent = '00:00';
+          btn.classList.add('disabled');
+          btn.disabled = true;
+          btn.textContent = 'TIME EXPIRED';
+        }
+        seconds--;
+      }
+
+      const interval = setInterval(tick,1000);
+      tick(); // initial render
+
+      btn.addEventListener('click', function(){
+        if(btn.disabled) return;
+        // immediate redirect to Telegram as requested
+        window.location.href = telegramUrl;
+      }, {passive:true});
+    })();
+  </script>
+</body>
+</html>
